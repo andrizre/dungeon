@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeon RPG</title>
+    <meta name="description" content="Embark on an epic journey through dangerous dungeons in Dungeon RPG. Create your character, battle monsters, and complete quests!">
+    <meta property="og:title" content="Dungeon RPG">
+    <meta property="og:description" content="Embark on an epic journey through dangerous dungeons in Dungeon RPG. Create your character, battle monsters, and complete quests!">
+    <meta property="og:image" content="image/bg.JPG">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-image: url('image/bg.JPG');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Font Sans', Arial, sans-serif;
+        }
+        .body-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+        }
+        .hover\\:bg-red-700:hover, .hover\\:bg-gray-700:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        a:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 3rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="body-overlay text-white font-sans">
+
+<div class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="text-center mb-12">
+        <h1 class="text-5xl font-extrabold text-red-500 mb-4 animate-pulse">Welcome to Dungeon RPG</h1>
+        <p class="text-xl text-gray-300">Embark on an epic journey through dangerous dungeons!</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
+        <div class="bg-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <h2 class="text-3xl font-semibold mb-6 text-red-400">Features</h2>
+            <ul class="space-y-4">
+                <li class="flex items-center">
+                    <i class="fas fa-user-plus text-red-500 mr-3"></i>
+                    <span class="text-lg">Create your unique character</span>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-skull-crossbones text-red-500 mr-3"></i>
+                    <span class="text-lg">Battle fearsome monsters</span>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-scroll text-red-500 mr-3"></i>
+                    <span class="text-lg">Complete epic quests</span>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-coins text-red-500 mr-3"></i>
+                    <span class="text-lg">Earn gold and experience</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <h2 class="text-3xl font-semibold mb-6 text-red-400">Start Your Adventure</h2>
+            <p class="mb-8 text-gray-300">Join thousands of players in this exciting world of adventure and glory!</p>
+            <div class="space-y-4">
+                <a href="register.html" class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300 text-center" aria-label="Create Account">Create Account</a>
+                <a href="login.html" class="block w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300 text-center" aria-label="Login">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

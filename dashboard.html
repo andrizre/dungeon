@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Dungeon RPG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-image: url('image/bg.JPG');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Font Sans', Arial, sans-serif;
+        }
+        .body-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+        }
+        .dashboard-card {
+            background: rgba(39, 39, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="body-overlay text-white font-sans">
+
+<!-- Header -->
+<header class="bg-gray-900 bg-opacity-80 py-4">
+    <div class="container mx-auto flex justify-between items-center px-4">
+        <h1 class="text-2xl font-bold text-red-500">Dungeon RPG</h1>
+        <nav>
+            <span class="text-gray-300">Welcome, <span id="usernameHeader" class="text-red-500">Guest</span></span>
+            <a href="#" class="text-gray-300 hover:text-red-500 mx-2">Home</a>
+            <a href="#" class="text-gray-300 hover:text-red-500 mx-2">Profile</a>
+            <a href="#" id="logoutButton" class="text-gray-300 hover:text-red-500 mx-2">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container mx-auto p-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Player Stats -->
+        <div class="dashboard-card p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-red-400 mb-4">Player Stats</h2>
+            <div class="space-y-4">
+                <div>
+                    <p class="text-gray-300">Level: <span id="playerLevel" class="text-red-500">1</span></p>
+                </div>
+                <div>
+                    <p class="text-gray-300">Health: <span id="playerHealth" class="text-red-500">100/100</span></p>
+                </div>
+                <div>
+                    <p class="text-gray-300">Gold: <span id="playerGold" class="text-red-500">0</span></p>
+                </div>
+                <div>
+                    <p class="text-gray-300">Experience: <span id="playerExp" class="text-red-500">0/1000</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="dashboard-card p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-red-400 mb-4">Quick Actions</h2>
+            <div class="space-y-4">
+                <button class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">Explore Dungeon</button>
+                <button class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">Battle Monster</button>
+                <button class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">Visit Shop</button>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="dashboard-card p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-red-400 mb-4">Recent Activity</h2>
+            <div class="space-y-4">
+                <div class="text-gray-300">
+                    <p>Defeated a Goblin!</p>
+                    <p class="text-sm text-gray-400">2 minutes ago</p>
+                </div>
+                <div class="text-gray-300">
+                    <p>Found 50 Gold in a chest.</p>
+                    <p class="text-sm text-gray-400">10 minutes ago</p>
+                </div>
+                <div class="text-gray-300">
+                    <p>Leveled up to 15!</p>
+                    <p class="text-sm text-gray-400">1 hour ago</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 bg-opacity-80 py-4 mt-6">
+    <div class="container mx-auto text-center text-gray-300">
+        <p>&copy; 2023 Dungeon RPG. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Ambil data pengguna yang login dari sessionStorage
+    const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+
+    // Jika tidak ada pengguna yang login, redirect ke halaman login
+    if (!loggedInUser) {
+        alert('You are not logged in!');
+        window.location.href = 'login.html';
+    }
+
+    // Tampilkan data pengguna di dashboard
+    document.addEventListener('DOMContentLoaded', function () {
+        // Update Player Stats
+        document.getElementById('playerLevel').textContent = loggedInUser.level || 1;
+        document.getElementById('playerHealth').textContent = `${loggedInUser.health || 100}/${loggedInUser.maxHealth || 100}`;
+        document.getElementById('playerGold').textContent = loggedInUser.gold || 0;
+        document.getElementById('playerExp').textContent = `${loggedInUser.exp || 0}/${loggedInUser.maxExp || 1000}`;
+
+        // Update Username di Header
+        document.getElementById('usernameHeader').textContent = loggedInUser.username;
+    });
+
+    // Logout Functionality
+    document.getElementById('logoutButton').addEventListener('click', function (e) {
+        e.preventDefault();
+        sessionStorage.removeItem('loggedInUser'); // Hapus data pengguna yang login
+        window.location.href = 'login.html'; // Redirect ke halaman login
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Dungeon RPG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-image: url('image/bg.JPG');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Font Sans', Arial, sans-serif;
+        }
+        .body-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+        }
+    </style>
+</head>
+<body class="body-overlay text-white font-sans">
+
+<div class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="bg-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-lg p-8 rounded-2xl shadow-lg w-full max-w-md">
+        <h2 class="text-3xl font-semibold mb-6 text-red-400 text-center">Register</h2>
+        <form id="registerForm">
+            <div class="mb-4">
+                <label for="username" class="block text-gray-300 mb-2">Username</label>
+                <input type="text" id="username" name="username" class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-300 mb-2">Email</label>
+                <input type="email" id="email" name="email" class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-gray-300 mb-2">Password</label>
+                <input type="password" id="password" name="password" class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+            </div>
+            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">Register</button>
+        </form>
+        <p class="mt-4 text-gray-300 text-center">Already have an account? <a href="login.html" class="text-red-400 hover:underline">Login here</a></p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Ambil nilai input
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Simpan data di localStorage
+        const user = {
+            username: username,
+            email: email,
+            password: password,
+            level: 1, // Default level
+            health: 100, // Default health
+            maxHealth: 100, // Default max health
+            gold: 0, // Default gold
+            exp: 0, // Default experience
+            maxExp: 1000 // Default max experience
+        };
+
+        // Cek apakah username sudah terdaftar
+        if (localStorage.getItem(username)) {
+            alert('Username already exists!');
+            return;
+        }
+
+        // Simpan data pengguna
+        localStorage.setItem(username, JSON.stringify(user));
+        alert('Registration successful!');
+        window.location.href = 'login.html'; // Redirect ke halaman login
+    });
+</script>
+
+</body>
+</html>
